@@ -1,33 +1,33 @@
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import './globals.css'
-import { HomeIcon, Lightbulb } from 'lucide-react'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { HomeIcon, Lightbulb } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
 
 const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ? process.env.NEXT_PUBLIC_SITE_URL : ''
+    process.env.NEXT_PUBLIC_SITE_URL ? process.env.NEXT_PUBLIC_SITE_URL : "",
   ),
-  title: '2025 Fall Teaching and Learning Institute Survey Results',
+  title: "2026 Spring Teaching and Learning Institute Survey Results",
   description:
-    'This is the feedback we received from our 2025 Fall Teaching and Learning Institute.',
-}
+    "This is the feedback we received from our 2026 Spring Teaching and Learning Institute.",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" className="dark">
@@ -41,7 +41,7 @@ export default function RootLayout({
           </Link>
           <Link href="/" className="flex-1">
             <h1 className="text-xs md:text-lg w-64 lg:text-2xl lg:w-full text-center">
-              2025 Fall Teaching & Learning Institute Survey Results
+              2026 Spring Teaching &amp; Learning Institute Survey Results
             </h1>
           </Link>
           <div className="flex-1 flex justify-end">
@@ -58,12 +58,12 @@ export default function RootLayout({
           asChild
           className="fixed bottom-8 right-8 md:hidden rounded-full w-12 h-12"
         >
-          <Link href="https://forms.office.com/r/EEMnVePsfs">
+          <Link href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=eX75-2KXzEedROnZnhy0bhYla4QZRjpPqhv7lh-qu0pUMllaVjJGM0JCSkIxTzRNVzQ2TlNOWDNSQS4u">
             <Lightbulb className="size-6" />
             <span className="sr-only">Submit a proposal</span>
           </Link>
         </Button>
       </body>
     </html>
-  )
+  );
 }

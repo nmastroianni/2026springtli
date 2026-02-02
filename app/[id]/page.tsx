@@ -1,49 +1,49 @@
-import React from 'react'
-import data from '@/lib/data.json'
+import React from "react";
+import data from "@/lib/data.json";
 import {
   agreementsToCount,
   countResponses,
   programsToCount,
   rolesToCount,
-} from '@/lib/utils'
-import RoleChart from '@/components/RoleChart'
-import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card'
-import ProgramChart from '@/components/ProgramChart'
-import DeepThinkingChart from '@/components/DeepThinkingChart'
-import BeneficialChart from '@/components/BeneficialChart'
+} from "@/lib/utils";
+import RoleChart from "@/components/RoleChart";
+import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
+import ProgramChart from "@/components/ProgramChart";
+import DeepThinkingChart from "@/components/DeepThinkingChart";
+import BeneficialChart from "@/components/BeneficialChart";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion'
-import { Metadata } from 'next'
+} from "@/components/ui/accordion";
+import { Metadata } from "next";
 
 type Params = {
-  id: number
-}
+  id: number;
+};
 
 const Session = async ({ params }: { params: Promise<{ id: number }> }) => {
-  const { id } = await params
-  const session = data[id]
+  const { id } = await params;
+  const session = data[id];
 
-  const roles = countResponses(session, rolesToCount, 'Question 1')
-  const programs = countResponses(session, programsToCount, 'Question 3')
-  const deepThinking = countResponses(session, agreementsToCount, 'Question 4')
-  const beneficial = countResponses(session, agreementsToCount, 'Question 5')
-  const goals = countResponses(session, agreementsToCount, 'Question 7')
+  const roles = countResponses(session, rolesToCount, "Question 1");
+  const programs = countResponses(session, programsToCount, "Question 3");
+  const deepThinking = countResponses(session, agreementsToCount, "Question 4");
+  const beneficial = countResponses(session, agreementsToCount, "Question 5");
+  const goals = countResponses(session, agreementsToCount, "Question 7");
   const sessionFeedback = session.Feedback.filter(
-    (item) => item['Question 6']
-  ).map((item) => item['Question 6'])
-  const delivery = session.Feedback.filter((item) => item['Question 8']).map(
-    (item) => item['Question 8']
-  )
-  const improved = session.Feedback.filter((item) => item['Question 9']).map(
-    (item) => item['Question 9']
-  )
-  const topics = session.Feedback.filter((item) => item['Question 10']).map(
-    (item) => item['Question 10']
-  )
+    (item) => item["Question 6"],
+  ).map((item) => item["Question 6"]);
+  const delivery = session.Feedback.filter((item) => item["Question 8"]).map(
+    (item) => item["Question 8"],
+  );
+  const improved = session.Feedback.filter((item) => item["Question 9"]).map(
+    (item) => item["Question 9"],
+  );
+  const topics = session.Feedback.filter((item) => item["Question 10"]).map(
+    (item) => item["Question 10"],
+  );
   return (
     <div className="p-4 lg:p-8">
       <h2 className="text-center text-3xl font-black py-4 lg:py-8">
@@ -104,7 +104,7 @@ const Session = async ({ params }: { params: Promise<{ id: number }> }) => {
       <div className="max-w-3xl mx-auto">
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger>
+            <AccordionTrigger className="cursor-pointer">
               <h2 className="font-bold text-center lg:text-2xl">
                 Session Feedback
               </h2>
@@ -120,7 +120,7 @@ const Session = async ({ params }: { params: Promise<{ id: number }> }) => {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
-            <AccordionTrigger>
+            <AccordionTrigger className="cursor-pointer">
               <h2 className="font-bold text-center lg:text-2xl">
                 How will it affect my classroom?
               </h2>
@@ -136,7 +136,7 @@ const Session = async ({ params }: { params: Promise<{ id: number }> }) => {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
-            <AccordionTrigger>
+            <AccordionTrigger className="cursor-pointer">
               <h2 className="font-bold text-center lg:text-2xl">
                 How can TLI be improved?
               </h2>
@@ -152,7 +152,7 @@ const Session = async ({ params }: { params: Promise<{ id: number }> }) => {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-4">
-            <AccordionTrigger>
+            <AccordionTrigger className="cursor-pointer">
               <h2 className="font-bold text-center lg:text-2xl">
                 Future TLI topic ideas
               </h2>
@@ -170,17 +170,17 @@ const Session = async ({ params }: { params: Promise<{ id: number }> }) => {
         </Accordion>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export async function generateMetadata(props: {
-  params: Promise<Params>
+  params: Promise<Params>;
 }): Promise<Metadata> {
-  const params = await props.params
-  const session = data[params.id]
+  const params = await props.params;
+  const session = data[params.id];
   return {
     title: `${session.SessionTitle}`,
-  }
+  };
 }
 
-export default Session
+export default Session;
